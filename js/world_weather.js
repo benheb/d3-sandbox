@@ -80,11 +80,11 @@
       svg.append("path")
         .datum(topojson.object(world, world.objects.land))
         .attr("class", "land")
-        .attr("d", path);
+        .attr("d", path)
+        .attr("d", temps);
     });
     
-    //TODO remove timeout, hack to make features render on top (after world json)
-    setTimeout(function() {
+    function temps() {
       var group = svg.append('g');
       
       $.ajax({
@@ -119,7 +119,7 @@
           
         }
       });
-    },90)
+    }
     
     function styler(data) {
       
