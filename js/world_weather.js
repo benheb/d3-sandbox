@@ -1,5 +1,7 @@
   var width = 650,
-    height = 750;
+    height = 750,
+    velocity = [.008, -.002],
+    t0 = Date.now();
   
   var scales = {
     "armadillo" : 185,
@@ -14,7 +16,8 @@
     //var projection = d3.geo.eisenlohr()
         .scale(285)
         .translate([width / 2, height / 2.5])
-        .clipAngle(90);
+        .clipAngle(90)
+        .precision(0);
     
     var path = d3.geo.path()
         .projection(projection);
@@ -31,6 +34,7 @@
         .attr("width", width)
         .attr("height", height);
     
+    /*
     var down = false;
     svg.on('mousedown', function() {
       down = true;
@@ -46,7 +50,8 @@
       projection.rotate([λ(p[0]), φ(p[1])]);
       svg.selectAll("path").attr("d", path);
     });
-    
+    */
+   
     $(window).mousewheel(function (event, delta, deltaX, deltaY) {
       var s = projection.scale();
       if (delta > 0) {
@@ -59,6 +64,7 @@
     });
     
     //change projection
+    /*
     d3.select("select").on("change", function() {
       projection = d3.geo[this.value]()
         .scale(scales[this.value])
@@ -74,7 +80,8 @@
           .duration(300)
           .attr("d", path);
     });
-    
+    */
+   
     //add countries
     d3.json("world-110m.json", function(error, world) {
       svg.append("path")
@@ -117,6 +124,7 @@
           projection.rotate([λ(450), φ(390)]);
           svg.selectAll("path").attr("d", path);
           
+          setTimer();
         }
       });
     }
@@ -164,5 +172,15 @@
           break;
       }
       return color;
+    }
+    
+    function setTimer() {
+      d3.timer(function() {
+        var t = Date.now() - t0,
+            o = [λ(450) + velocity[0] * t, φ(450) + velocity[1] * 1];
+            //o = [origin[0] + velocity[0] * t, origin[1] + velocity[1] * t];
+        projection.rotate(o);
+        svg.selectAll("path").attr("d", path);
+      });
     }
   }
