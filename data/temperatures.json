@@ -1,0 +1,126 @@
+[
+    { "type": "Feature",
+      "geometry": {"type": "Point", "coordinates": [-104.963379,39.749434]},
+      "properties": {"temperature": 40, "city" : "Denver", "country": "United States"}
+    },{ "type": "Feature",
+      "geometry": {"type": "Point", "coordinates": [-82.474365,27.955591]},
+      "properties": {"temperature": 70, "city" : "Tampa", "country": "United States"}
+    },{ "type": "Feature",
+      "geometry": {"type": "Point", "coordinates": [-149.875488,61.185625]},
+      "properties": {"temperature": 10, "city" : "Anchorage", "country": "United States"}
+    },{ "type": "Feature",
+      "geometry": {"type": "Point", "coordinates": [-80.189209,25.79]},
+      "properties": {"temperature": 90, "city" : "Miami", "country": "United States"}
+    },{ "type": "Feature",
+      "geometry": {"type": "Point", "coordinates": [-93.186035,44.949249]},
+      "properties": {"temperature": 15, "city" : "Minneapolis", "country": "United States"}
+    },{ "type": "Feature",
+      "geometry": {"type": "Point", "coordinates": [-122.299805,47.635784]},
+      "properties": {"temperature": 40, "city" : "Seattle", "country": "United States"}
+    },{ "type": "Feature",
+      "geometry": {"type": "Point", "coordinates": [-74.005973,40.714353]},
+      "properties": {"temperature": 50, "city" : "New York", "country": "United States"}
+    },{ "type": "Feature",
+      "geometry": {"type": "Point", "coordinates": [-87.629798,41.878114]},
+      "properties": {"temperature": 40, "city" : "Chicago", "country": "United States"}
+    },{ "type": "Feature",
+      "geometry": {"type": "Point", "coordinates": [-122.419415,37.77493]},
+      "properties": {"temperature": 60, "city" : "San Franscisco", "country": "United States"}
+    },{ "type": "Feature",
+      "geometry": {"type": "Point", "coordinates": [-118.251622,34.050882]},
+      "properties": {"temperature": 70, "city" : "Los Angeles", "country": "United States"}
+    },{ "type": "Feature",
+      "geometry": {"type": "Point", "coordinates": [-71.059773,42.358431]},
+      "properties": {"temperature": 30, "city" : "Boston", "country": "United States"}
+    },{ "type": "Feature",
+      "geometry": {"type": "Point", "coordinates": [-94.578567,39.099727]},
+      "properties": {"temperature": 40, "city" : "Kansas City", "country": "United States"}
+    },{ "type": "Feature",
+      "geometry": {"type": "Point", "coordinates": [-99.133208,19.432608]},
+      "properties": {"temperature": 40, "city" : "Mexico City", "country": "Mexico"}
+    },{ "type": "Feature",
+      "geometry": {"type": "Point", "coordinates": [-113.490927,53.544389]},
+      "properties": {"temperature": 40, "city" : "Edmonton", "country": "Canada"}
+    },{ "type": "Feature",
+      "geometry": {"type": "Point", "coordinates": [-114.038086, 51.013755]},
+      "properties": {"temperature": 40, "city" : "Calgary", "country": "Canada"}
+    },{ "type": "Feature",
+      "geometry": {"type": "Point", "coordinates": [-123.046875,49.239121]},
+      "properties": {"temperature": 40, "city" : "Vancouver", "country": "Canada"}
+    },{ "type": "Feature",
+      "geometry": {"type": "Point", "coordinates": [-97.119141,49.866317]},
+      "properties": {"temperature": 40, "city" : "Winnipeg", "country": "Canada"}
+    },{ "type": "Feature",
+      "geometry": {"type": "Point", "coordinates": [-79.321289,43.644026]},
+      "properties": {"temperature": 40, "city" : "Toronto", "country": "Canada"}
+    },{ "type": "Feature",
+      "geometry": {"type": "Point", "coordinates": [-71.147461,46.769968]},
+      "properties": {"temperature": 40, "city" : "Quebec", "country": "Canada"}
+    },{ "type": "Feature",
+      "geometry": {"type": "Point", "coordinates": [-3.691406,40.245992]},
+      "properties": {"temperature": 40, "city" : "Madrid", "country": "Spain"}
+    },{ "type": "Feature",
+      "geometry": {"type": "Point", "coordinates": [2.373047,48.777913]},
+      "properties": {"temperature": 40, "city" : "Paris", "country": "France"}
+    },{ "type": "Feature",
+      "geometry": {"type": "Point", "coordinates": [-0.043945,51.536086]},
+      "properties": {"temperature": 40, "city" : "London", "country": "England"}
+    },{ "type": "Feature",
+      "geometry": {"type": "Point", "coordinates": [30.322266,59.933]},
+      "properties": {"temperature": 40, "city" : "St Petersburg", "country": "Russia"}
+    },{ "type": "Feature",
+      "geometry": {"type": "Point", "coordinates": [37.529297,55.652798]},
+      "properties": {"temperature": 40, "city" : "Moscow", "country": "Russia"}
+    },{ "type": "Feature",
+      "geometry": {"type": "Point", "coordinates": [-74.047852,4.565474]},
+      "properties": {"temperature": 40, "city" : "Bogota", "country": "Colombia"}
+    },{ "type": "Feature",
+      "geometry": {"type": "Point", "coordinates": [-84.056396,9.893099]},
+      "properties": {"temperature": 40, "city" : "San Jose", "country": "Costa Rica"}
+    },{ "type": "Feature",
+      "geometry": {"type": "Point", "coordinates": [-21.895752,64.12499]},
+      "properties": {"temperature": 40, "city" : "Reykjavik", "country": "Iceland"}
+    },{ "type": "Feature",
+      "geometry": {"type": "Point", "coordinates": [139.746094,35.710838]},
+      "properties": {"temperature": 40, "city" : "Tokyo", "country": "Japan"}
+    },{ "type": "Feature",
+      "geometry": {"type": "Point", "coordinates": [126.958008,37.509726]},
+      "properties": {"temperature": 40, "city" : "Seoul", "country": "South Korea"}
+    },{ "type": "Feature",
+      "geometry": {"type": "Point", "coordinates": [121.486816,31.184609]},
+      "properties": {"temperature": 40, "city" : "Shanghai", "country": "China"}
+    },{ "type": "Feature",
+      "geometry": {"type": "Point", "coordinates": [72.861328,19.103648]},
+      "properties": {"temperature": 40, "city" : "Mumbai", "country": "India"}
+    },{ "type": "Feature",
+      "geometry": {"type": "Point", "coordinates": [-77.058105,-12.01783]},
+      "properties": {"temperature": 40, "city" : "Lima", "country": "Peru"}
+    },{ "type": "Feature",
+      "geometry": {"type": "Point", "coordinates": [-62.929687,-17.85329]},
+      "properties": {"temperature": 40, "city" : "Santa Cruz", "country": "Bolivia"}
+    },{ "type": "Feature",
+      "geometry": {"type": "Point", "coordinates": [-58.359375,-34.705493]},
+      "properties": {"temperature": 40, "city" : "Buenos Aires", "country": "Argentina"}
+    },{ "type": "Feature",
+      "geometry": {"type": "Point", "coordinates": [-8.041992,31.672083]},
+      "properties": {"temperature": 40, "city" : "Marrakesh", "country": "Morocco"}
+    },{ "type": "Feature",
+      "geometry": {"type": "Point", "coordinates": [23.730469,37.944198]},
+      "properties": {"temperature": 40, "city" : "Athens", "country": "Greece"}
+    },{ "type": "Feature",
+      "geometry": {"type": "Point", "coordinates": [27.487793,42.472097]},
+      "properties": {"temperature": 40, "city" : "Burgas", "country": "Bulgaria"}
+    },{ "type": "Feature",
+      "geometry": {"type": "Point", "coordinates": [31.201172,30.050077]},
+      "properties": {"temperature": 40, "city" : "Cairo", "country": "Egypt"}
+    },{ "type": "Feature",
+      "geometry": {"type": "Point", "coordinates": [-79.980469,40.430224]},
+      "properties": {"temperature": 40, "city" : "Pittsburgh", "country": "United States"}
+    },{ "type": "Feature",
+      "geometry": {"type": "Point", "coordinates": [-84.375,33.742613]},
+      "properties": {"temperature": 40, "city" : "Atlanta", "country": "United States"}
+    },{ "type": "Feature",
+      "geometry": {"type": "Point", "coordinates": [-95.427246,29.745302]},
+      "properties": {"temperature": 40, "city" : "Houston", "country": "United States"}
+    }
+]
