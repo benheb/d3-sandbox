@@ -107,17 +107,19 @@
             .style('fill', styler)
             .on('mouseover', function(d) { 
               d3.select(this)
-                .transition()
-                  .attr('r', 3);
+                .attr('d', hover);
+                
               var city = d3.select(this).data()[0].properties.city;
               var temp = d3.select(this).data()[0].properties.temperature;
               $('#info-window').html( '<span class="city">' + city +' </span><span class="temp"> ' + temp + '&deg; </span>' ).show();
+              svg.selectAll("path").attr("d", path);
+              
             })
             .on('mouseout', function(d) {
-              d3.select(this) 
-                .transition()
-                  .attr('r', 2);
+              d3.select(this)
+                .attr('d', exit); 
               $('#infowin').css('display', 'none');
+              svg.selectAll("path").attr("d", path);
             });
           
           //set initial location of map
@@ -127,6 +129,30 @@
           setTimer();
         }
       });
+    }
+    
+    function hover(d) {
+      
+      var circle = svg.append("g")
+        .attr("class", "circles")
+      .selectAll("circle")
+        .data([d])
+      .enter().append("circle")
+        .attr("transform", function(d) {return "translate(" + projection([d.geometry.coordinates[0],d.geometry.coordinates[1]]) + ")";})
+        .attr("fill", styler)
+        //.transition()
+        //  .duration(100)
+          .attr('class', 'hover')
+          .attr('r', 10)
+          .style("fill-opacity", 0.5)
+    }
+    
+    function exit() {
+      d3.selectAll('.hover')
+        .transition()
+          .style("fill-opacity", 0)
+          .duration(1500)
+          .remove();
     }
     
     function styler(data) {
@@ -180,6 +206,8 @@
             o = [λ(450) + velocity[0] * t, φ(450) + velocity[1] * 1];
             //o = [origin[0] + velocity[0] * t, origin[1] + velocity[1] * t];
         projection.rotate(o);
+        d3.selectAll("circle")
+          .attr("transform", function(d) {return "translate(" + projection([d.geometry.coordinates[0],d.geometry.coordinates[1]]) + ")";})
         svg.selectAll("path").attr("d", path);
       });
     }
