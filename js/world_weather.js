@@ -1,7 +1,8 @@
   var width = 650,
     height = 750,
     velocity = [.008, -.002],
-    t0 = Date.now();
+    t0 = Date.now(),
+    cities;
   
   var scales = {
     "armadillo" : 185,
@@ -101,7 +102,7 @@
         success: function(collection) {
           //console.log('features!', collection)
          
-          group.selectAll('path')
+          cities = group.selectAll('path')
             .data(collection)
           .enter().append('path')
             .style('fill', styler)
@@ -127,12 +128,12 @@
           svg.selectAll("path").attr("d", path);
           
           setTimer();
+          step();
         }
       });
     }
     
-    function hover(d) {
-      
+    function hover( d ) {
       var circle = svg.append("g")
         .attr("class", "circles")
       .selectAll("circle")
@@ -140,11 +141,9 @@
       .enter().append("circle")
         .attr("transform", function(d) {return "translate(" + projection([d.geometry.coordinates[0],d.geometry.coordinates[1]]) + ")";})
         .attr("fill", styler)
-        //.transition()
-        //  .duration(100)
-          .attr('class', 'hover')
-          .attr('r', 10)
-          .style("fill-opacity", 0.5)
+        .attr('class', 'hover')
+        .attr('r', 10)
+        .style("fill-opacity", 0.5)
     }
     
     function exit() {
@@ -155,7 +154,7 @@
           .remove();
     }
     
-    function styler(data) {
+    function styler( data ) {
       
       var temp = data.properties.temperature;
       var colors = ["rgb(103,0,31)", "rgb(178,24,43)", "rgb(214,96,77)", "rgb(244,165,130)", "rgb(253,219,199)", "rgb(247,247,247)", "rgb(209,229,240)", "rgb(146,197,222)", "rgb(67,147,195)", "rgb(33,102,172)", "rgb(5,48,97)"] 
@@ -210,5 +209,26 @@
           .attr("transform", function(d) {return "translate(" + projection([d.geometry.coordinates[0],d.geometry.coordinates[1]]) + ")";})
         svg.selectAll("path").attr("d", path);
       });
+    }
+    
+    function step() {
+      window.setInterval(function() {
+        var i = 0;
+        var len = cities[0].length;
+        var sel = Math.floor((Math.random()*len)+1);
+        
+        d3.select('g').selectAll('path')
+          .attr('d', function(d) {
+            i++;
+            if (i == sel) {
+              hover(d);
+              var city = d3.select(this).data()[0].properties.city;
+              var temp = d3.select(this).data()[0].properties.temperature;
+              $('#info-window').html( '<span class="city">' + city +' </span><span class="temp"> ' + temp + '&deg; </span>' ).show();
+              svg.selectAll("path").attr("d", path);
+            }
+          });
+          exit();
+      },4000)
     }
   }
