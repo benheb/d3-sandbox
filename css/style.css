@@ -102,3 +102,38 @@ a:hover {
   padding: 10px;
   padding-right: 0px;
 }
+
+#legend-low {
+  position:absolute;
+  bottom:20px;
+  right:485px;
+  color:#FFF;
+}
+
+#legend-high {
+  position:absolute;
+  right:136px;
+  bottom:20px;
+  color:#FFF;
+}
+
+#legend {
+  position: absolute;
+  bottom: 20px;
+  right: 180px;
+  width: 301px;
+  height: 20px;
+}
+
+.color {
+  width:25px; 
+  height:20px;
+  float:left;
+}
+
+#temp-map-bweather {
+  color:#EEE;
+  position:absolute;
+  bottom:20px;
+  left:10px;
+}

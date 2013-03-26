@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>World Temperature Map</title>
+    <title>Current Temperatures of The World</title>
     <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
     <script type="text/javascript" src="http://d3js.org/d3.v3.min.js"></script>
     <script type="text/javascript" src="http://d3js.org/d3.geo.projection.v0.min.js"></script>
@@ -37,9 +37,12 @@ path {
   <body>
     <div id="body">
       <div id="footer" class="inverted">
-        <h1>World Temperature Map</h1>
+        <h1>Temperatures of the world</h1>
         <div id="info-window"></div>
       </div>
+      <div id="legend-low"> -10&deg; F </div>
+      <div id="legend"></div>
+      <div id="legend-high"> >90&deg; F</div>
     </div>
     <script type="text/javascript">
     $(document).ready(function() {
