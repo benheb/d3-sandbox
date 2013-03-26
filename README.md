@@ -5,6 +5,7 @@
   * /js/world_weather.js
 * Example
   * http://benheb.github.com/d3-sandbox/world-temperatures.html
+  * http://www.brendansweather.com/world-temperatures
 
 ### Snow Totals - March 23, 2013
 * Quick map of snow totals from storm in Denver, March 23, 2013
