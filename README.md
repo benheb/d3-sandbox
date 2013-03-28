@@ -1,6 +1,10 @@
 # d3 playground
 
 ### World Temperatures
+* TODOS
+  * Fix d="" errors
+  * Reimplement mouse events ( pan ) 
+  * Add more cities
 * Temperatures from around the world - a d3 orthographic visualization. 
   * /js/world_weather.js
 * Example
