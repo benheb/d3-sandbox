@@ -5,14 +5,16 @@
     svg,
     path,
     φ,
-    λ;
+    λ,
+    down,
+    stepInterval = null;
   
   function init() { 
-    var width = 800,
+    var width = 900,
       height = 800;
       
     projection = d3.geo.orthographic()
-      .scale(285)
+      .scale(270)
       .translate([width / 2, height / 2.5])
       .clipAngle(90)
       .precision(0);
@@ -28,13 +30,11 @@
       .domain([0, height])
       .range([90, -90]);
   
-    svg = d3.select("body").append("svg")
+    svg = d3.select("#map").append("svg")
       .attr("width", width)
       .attr("height", height);
     
-    //TODO fix interaction with mouse - allow user to move map around
-    /*
-    var down = false;
+    down = false;
     svg.on('mousedown', function() {
       down = true;
     });
@@ -47,9 +47,11 @@
       if (!down) return;
       var p = d3.mouse(this);
       projection.rotate([λ(p[0]), φ(p[1])]);
+      d3.selectAll("circle")
+        .attr("transform", function(d) {return "translate(" + projection([d.geometry.coordinates[0],d.geometry.coordinates[1]]) + ")";  })
+        .attr('d', updateLine)
       svg.selectAll("path").attr("d", path);
     });
-    */
    
     // mousewheel scroll
     $(window).mousewheel(function (event, delta, deltaX, deltaY) {
@@ -92,32 +94,23 @@
     
     $.ajax({
       dataType: "json",
-      //url: "../sandbox/data/temperatures",
       url: "http://www.brendansweather.com/temperatures",
       success: function(collection) {
-         cities = group.selectAll('path')
+        cities = group.selectAll('path')
           .data(collection)
         .enter().append('path')
           .style('fill', styler)
           .on('mouseover', function(d) { 
+            if (stepInterval) {
+              clearInterval(stepInterval);
+              stepInterval = null;
+            }
             d3.select(this)
               .attr('d', hover);
-              
-            var city = d3.select(this).data()[0].properties.city;
-            var temp = d3.select(this).data()[0].properties.temperature;
-            $('#info-window').html( '<span class="city">' + city +' </span><span class="temp"> ' + temp + '&deg; </span>' ).show();
-            svg.selectAll("path").attr("d", path);
-            
-          })
-          .on('mouseout', function(d) {
-            d3.select(this)
-              .attr('d', exit); 
-            $('#infowin').css('display', 'none');
-            svg.selectAll("path").attr("d", path);
           });
         
         //set initial location of map
-        projection.rotate([λ(450), φ(390)]);
+        projection.rotate([λ(550), φ(390)]);
         svg.selectAll("path").attr("d", path);
         
         setTimer();
@@ -133,6 +126,13 @@
    * 
    */
   function hover( d ) {
+    exit();
+    
+    if (stepInterval) {
+      $('#info-window').hide();
+      d3.selectAll('.tip-line').remove();
+    }
+    
     var circle = svg.append("g")
       .attr("class", "circles")
     .selectAll("circle")
@@ -141,16 +141,58 @@
       .attr("transform", function(d) {return "translate(" + projection([d.geometry.coordinates[0],d.geometry.coordinates[1]]) + ")";})
       .attr("fill", styler)
       .attr('class', 'hover')
-      .attr('r', 10)
-      .style("fill-opacity", 0.5)
+      .attr('r', 1)
+      .style("fill-opacity", 0)
+      .transition()
+        .duration(700)
+        .attr('r', 17)
+        .style("fill-opacity", 0.3)
+      .transition()
+        .duration(400)
+        .attr('r', 8)
+        .style("fill-opacity", 0.5);
+      
+     var x2 = projection([d.geometry.coordinates[0],d.geometry.coordinates[1]])[0] + Math.floor(Math.random()*10) + 1;
+    var y2 = projection([d.geometry.coordinates[0],d.geometry.coordinates[1]])[1] + Math.floor(Math.random()*40) + 25;
+    
+    var line = svg.append("svg:line")
+      .attr('class', 'tip-line')
+      .style("stroke", styler(d))
+      .attr("x1", projection([d.geometry.coordinates[0],d.geometry.coordinates[1]])[0])
+      .attr("y1", projection([d.geometry.coordinates[0],d.geometry.coordinates[1]])[1])
+      .attr("x2", projection([d.geometry.coordinates[0],d.geometry.coordinates[1]])[0])
+      .attr("y2", projection([d.geometry.coordinates[0],d.geometry.coordinates[1]])[1])
+      .transition()
+        .duration(1300)
+        .attr("x2", x2)
+        .attr("y2", y2);
+      
+    
+    var city = d.properties.city;
+    var temp = d.properties.temperature;
+    $('#info-window').html( '<span class="city">' + city +' </span><span class="temp"> ' + temp + '&deg; </span>' ).css({'left' : (x2 + 105) + 'px', 'top' : (y2 - 5) + 'px'}).delay(500).fadeIn(1500);
+    
+    svg.selectAll("path").attr("d", path);
+    
+    if (!stepInterval) {
+      setTimeout(function() {
+        exit();
+      },4000);
+    }
   }
   
   function exit() {
     d3.selectAll('.hover')
       .transition()
         .style("fill-opacity", 0)
-        .duration(1500)
+        .duration(2000)
         .remove();
+    d3.selectAll('.tip-line')
+      .transition()
+        .style("stroke-opacity", 0)
+        .duration(900)
+        .remove();
+    $('#info-window').fadeOut(600);
   }
   
   /*
@@ -213,11 +255,21 @@
       var t = Date.now() - t0,
           o = [λ(450) + velocity[0] * t, φ(450) + velocity[1] * 1];
           //o = [origin[0] + velocity[0] * t, origin[1] + velocity[1] * t];
-      projection.rotate(o);
-      d3.selectAll("circle")
-        .attr("transform", function(d) {return "translate(" + projection([d.geometry.coordinates[0],d.geometry.coordinates[1]]) + ")";})
-      svg.selectAll("path").attr("d", path);
+      
+      if (!down) {
+        projection.rotate(o);
+        d3.selectAll("circle")
+          .attr("transform", function(d) {return "translate(" + projection([d.geometry.coordinates[0],d.geometry.coordinates[1]]) + ")";  })
+          .attr('d', updateLine)
+        svg.selectAll("path").attr("d", path);
+      }
     });
+  }
+  
+  function updateLine(d) {
+    d3.selectAll("line")
+      .attr("x1", projection([d.geometry.coordinates[0],d.geometry.coordinates[1]])[0])
+      .attr("y1", projection([d.geometry.coordinates[0],d.geometry.coordinates[1]])[1])
   }
   
   /*
@@ -226,7 +278,7 @@
    */
   //TODO only highlight cities that are visible, not clipped
   function step() {
-    window.setInterval(function() {
+    stepInterval = window.setInterval(function() {
       var i = 0;
       var len = cities[0].length;
       var sel = Math.floor((Math.random()*len)+1);
@@ -238,11 +290,9 @@
             hover(d);
             var city = d3.select(this).data()[0].properties.city;
             var temp = d3.select(this).data()[0].properties.temperature;
-            $('#info-window').html( '<span class="city">' + city +' </span><span class="temp"> ' + temp + '&deg; </span>' ).show();
             svg.selectAll("path").attr("d", path);
           }
         });
-        exit();
     },4000)
   }
   

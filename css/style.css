@@ -7,35 +7,33 @@ body {
   font-family: "Helvetica Neue", Helvetica;
 }
 
-#chart, #header, #footer {
-  position: absolute;
-  top: 0;
-}
-
-#header, #footer {
-  z-index: 1;
-  display: block;
-  font-size: 36px;
-  font-weight: 300;
-  text-shadow: 0 1px 0 #fff;
-}
-
-#header.inverted, #footer.inverted {
-  color: #fff;
-  height:100px;
-  text-shadow: 0 1px 4px #444;
-}
-
 #header {
-  top: 80px;
-  left: 140px;
-  width: 1000px;
+  position: absolute;
+  width: 100%;
+}
+
+#map {
+  width:900px;
+  height:800px;
+  overflow:hidden;
+  margin:auto;
+  position:relative;
 }
 
 #footer {
-  bottom: 80px;
-  right: 140px;
-  text-align: right;
+  height: 90px;
+  width: 100%;
+  overflow: hidden;
+  z-index: 100;
+  position: absolute;
+  bottom: 0px;
+}
+
+#footer h3 {
+  color:#EEEEEE;
+  width:500px;
+  margin:auto;
+  text-align:center;
 }
 
 rect {
@@ -50,6 +48,18 @@ pre {
 line {
   stroke: #000;
   stroke-width: 1.5px;
+}
+
+path {
+  fill: #444;
+}
+
+#arcs path {
+  fill:#FFF;
+}
+
+.cities {
+  fill:#FFF;
 }
 
 .string, .regexp {
@@ -91,28 +101,33 @@ a:hover {
 }
 
 #info-window {
-  display:none;
-  overflow: hidden;
+  display: none;
   position: absolute;
   z-index: 100;
-  top: 55px;
-  height: 100px;
-  width: auto;
-  right: 0px;
-  padding: 10px;
+  width: 220px;
+  padding-top:5px;
   padding-right: 0px;
+  text-align: left;
+  color:#FFF;
+  font-size:15pt;
+}
+
+#legend-wrap {
+  position:relative;
+  width:400px;
+  margin:auto;
+  height:40px;
 }
 
 #legend-low {
   position:absolute;
   bottom:20px;
-  right:485px;
   color:#FFF;
 }
 
 #legend-high {
   position:absolute;
-  right:136px;
+  left:358px;
   bottom:20px;
   color:#FFF;
 }
@@ -120,7 +135,7 @@ a:hover {
 #legend {
   position: absolute;
   bottom: 20px;
-  right: 180px;
+  left:48px;
   width: 301px;
   height: 20px;
 }
