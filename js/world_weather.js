@@ -170,7 +170,7 @@
     
     var city = d.properties.city;
     var temp = d.properties.temperature;
-    $('#info-window').html( '<span class="city">' + city +' </span><span class="temp"> ' + temp + '&deg; </span>' ).css({'left' : (x2 + 105) + 'px', 'top' : (y2 - 5) + 'px'}).delay(500).fadeIn(1500);
+    $('#info-window').html( '<span class="city">' + city +' </span><span class="temp"> ' + temp + '&deg; </span>' ).css({'left' : (x2 + 160) + 'px', 'top' : (y2 - 5) + 'px'}).delay(500).fadeIn(1500);
     
     svg.selectAll("path").attr("d", path);
     
