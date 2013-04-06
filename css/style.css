@@ -1,6 +1,5 @@
 body {
   background: url(texture-noise.png);
-  overflow: hidden;
   margin: 0;
   font-size: 14px;
   background:#000000;
@@ -13,20 +12,18 @@ body {
 }
 
 #map {
-  width:900px;
-  height:800px;
+  width:800px;
+  height: 550px;
   overflow:hidden;
   margin:auto;
   position:relative;
 }
 
 #footer {
-  height: 90px;
+  height: 125px;
   width: 100%;
   overflow: hidden;
   z-index: 100;
-  position: absolute;
-  bottom: 0px;
 }
 
 #footer h3 {
@@ -34,6 +31,26 @@ body {
   width:500px;
   margin:auto;
   text-align:center;
+}
+
+#footer #about {
+  width:500px;
+  margin:auto;
+  color:#999;
+}
+
+#footer #about span {
+  display: block;
+  float: left;
+  margin-right: 2px;
+  margin-left: 2px; 
+  text-align: center;
+  width: 188px;
+  border-right:1px solid #666;
+}
+
+#footer #about a {
+  color:#FFF;
 }
 
 rect {
@@ -109,7 +126,11 @@ a:hover {
   padding-right: 0px;
   text-align: left;
   color:#FFF;
-  font-size:15pt;
+  font-size:17pt;
+}
+
+.weather-info {
+  font-size:11pt;
 }
 
 #legend-wrap {

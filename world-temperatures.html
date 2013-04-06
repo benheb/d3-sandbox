@@ -24,11 +24,17 @@
     <div id="map"></div>
     <div id="info-window"></div>
     <div id="footer">
-      <h3>World Temperatures</h3>
+      <h3>Weather of the World</h3>
       <div id="legend-wrap">
         <div id="legend-low"> -10&deg; F </div>
         <div id="legend"></div>
         <div id="legend-high"> >90&deg; F</div>
+      </div>
+      <div id="about">
+        <span style="width:170px"><a href="http://www.twitter.com/brendansweather">@brendansweather</a></span>
+        <span style="width:193px;margin-right: 12px; margin-left:0px">Powered by <a href="http://forecast.io">Forecast.io</a></span>
+        <a href="https://twitter.com/share" class="twitter-share-button" data-url="http://benheb.github.io/d3-sandbox/world-temperatures.html" data-text="Visualizing weather of the world with #d3js" data-related="darksky">Tweet</a>
+           <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
       </div>
     </div>
     
@@ -40,6 +46,19 @@
     <script type="text/javascript" src="js/bootstrap.js"></script>
     <script type="text/javascript" src="js/mousewheel.js"></script>
     <script type="text/javascript" src="js/world_weather.js"></script>
+    <script type="text/javascript">
+
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-39866826-1']);
+      _gaq.push(['_trackPageview']);
+    
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+    
+    </script>
   </body>
 </html>
 

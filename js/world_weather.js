@@ -10,12 +10,12 @@
     stepInterval = null;
   
   function init() { 
-    var width = 900,
-      height = 800;
+    var width = 800,
+      height = 750;
       
     projection = d3.geo.orthographic()
-      .scale(270)
-      .translate([width / 2, height / 2.5])
+      .scale(240)
+      .translate([width / 2, height / 2.9])
       .clipAngle(90)
       .precision(0);
     
@@ -54,7 +54,7 @@
     });
    
     // mousewheel scroll
-    $(window).mousewheel(function (event, delta, deltaX, deltaY) {
+    $('#map').mousewheel(function (event, delta, deltaX, deltaY) {
       var s = projection.scale();
       if (delta > 0) {
         projection.scale(s * 1.1);
@@ -94,7 +94,8 @@
     
     $.ajax({
       dataType: "json",
-      url: "http://www.brendansweather.com/temperatures",
+      url: "http://localhost:3000/temperatures",
+      //url: "http://www.brendansweather.com/temperatures",
       success: function(collection) {
         cities = group.selectAll('path')
           .data(collection)
@@ -107,6 +108,9 @@
             }
             d3.select(this)
               .attr('d', hover);
+          })
+          .on('mouseout', function( d ) {
+            step();
           });
         
         //set initial location of map
@@ -114,6 +118,7 @@
         svg.selectAll("path").attr("d", path);
         
         setTimer();
+        selectOne();
         step();
         createLegend();
       }
@@ -169,8 +174,9 @@
       
     
     var city = d.properties.city;
-    var temp = d.properties.temperature;
-    $('#info-window').html( '<span class="city">' + city +' </span><span class="temp"> ' + temp + '&deg; </span>' ).css({'left' : (x2 + 160) + 'px', 'top' : (y2 - 5) + 'px'}).delay(500).fadeIn(1500);
+    var temp = Math.floor(d.properties.temperature);
+    var weather = d.properties.weather;
+    $('#info-window').html( '<span class="city">' + city +' </span><span class="temp"> ' + temp + '&deg; </span><br /><span class="weather-info">'+weather+'</span>' ).css({'left' : (x2 + 160) + 'px', 'top' : (y2 - 5) + 'px'}).delay(500).fadeIn(1500);
     
     svg.selectAll("path").attr("d", path);
     
@@ -283,6 +289,7 @@
       var len = cities[0].length;
       var sel = Math.floor((Math.random()*len)+1);
       
+      if (!down) {
       d3.select('g').selectAll('path')
         .attr('d', function(d) {
           i++;
@@ -293,7 +300,27 @@
             svg.selectAll("path").attr("d", path);
           }
         });
+      }
     },4000)
+  }
+  
+  function selectOne() {
+    var i = 0;
+    var len = cities[0].length;
+    var sel = Math.floor((Math.random()*len)+1);
+    
+    if (!down) {
+    d3.select('g').selectAll('path')
+      .attr('d', function(d) {
+        i++;
+        if (i == sel) {
+          hover(d);
+          var city = d3.select(this).data()[0].properties.city;
+          var temp = d3.select(this).data()[0].properties.temperature;
+          svg.selectAll("path").attr("d", path);
+        }
+      });
+    }
   }
   
   /*
