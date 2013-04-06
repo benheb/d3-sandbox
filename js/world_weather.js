@@ -94,8 +94,8 @@
     
     $.ajax({
       dataType: "json",
-      url: "http://localhost:3000/temperatures",
-      //url: "http://www.brendansweather.com/temperatures",
+      //url: "http://localhost:3000/temperatures",
+      url: "http://www.brendansweather.com/temperatures",
       success: function(collection) {
         cities = group.selectAll('path')
           .data(collection)
