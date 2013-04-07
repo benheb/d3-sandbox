@@ -6,6 +6,18 @@ body {
   font-family: "Helvetica Neue", Helvetica;
 }
 
+#intro {
+  position:absolute;
+  left:10px;
+  top:10px;
+  z-index:100;
+  background:#222;
+  color:#999;
+  width:200px;
+  padding:10px;
+  opacity:0.8;
+}
+
 #header {
   position: absolute;
   width: 100%;

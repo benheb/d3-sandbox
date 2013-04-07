@@ -10,6 +10,11 @@
     stepInterval = null;
   
   function init() { 
+    
+    setTimeout(function() {
+      $('#intro').fadeOut('slow');
+    },5000)
+    
     var width = 800,
       height = 750;
       
